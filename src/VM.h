@@ -1,4 +1,5 @@
 #include "Display.h"
+#include "InitIO.h"
 #include <cstdint>
 #include <map>
 
@@ -23,5 +24,6 @@ private:
 
 	uint8_t *m_RAM;
 	uint8_t *m_frameBuffer;
+	InitIO m_initIO;
 	Display m_display;
 };

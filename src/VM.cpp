@@ -5,7 +5,6 @@
 #include <ctime>
 #include <exception>
 #include <iostream>
-#include <SDL2/SDL.h>
 #include <thread>
 
 #define RAM_SIZE 4096
@@ -37,7 +36,8 @@ VM::VM() :
 	m_soundTmr(0),
 	m_PC(0),
 	m_SP(0),
-	m_display("CHIP-8", 64, 32)
+	m_initIO(),
+	m_display("CHIP-8", 640, 320)
 {
 	m_vRegs[0x0] = 0;
 	m_vRegs[0x1] = 0;
@@ -59,18 +59,14 @@ VM::VM() :
 	m_RAM = new uint8_t[RAM_SIZE];
 	std::memcpy(m_RAM, hexChars, sizeof(hexChars));
 
-	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
-	{
-		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
-	}
-
 	m_frameBuffer = new uint8_t[64 * 32];
 	std::memset(m_frameBuffer, 0, 64 * 32);
 }
 
 VM::~VM()
 {
-	SDL_Quit();
+	delete[] m_frameBuffer;
+	delete[] m_RAM;
 }
 
 void VM::loadProgram(uint8_t *src, uint32_t dest, uint32_t size)

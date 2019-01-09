@@ -1,6 +1,8 @@
 set(SOURCES
   Display.cpp
   Display.h
+  InitIO.cpp
+  InitIO.h
   main.cpp
   VM.cpp
   VM.h
