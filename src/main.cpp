@@ -1,11 +1,17 @@
 #include "VM.h"
 #include <cstdint>
 #include <fstream>
+#include <iostream>
 #include <vector>
 
-int main(int argc, char* args[])
+int main(int argc, char* argv[])
 {
-	std::ifstream file("PONG", std::ios::binary | std::ios::ate);
+	if(argc != 2)
+	{
+		std::cout << "Usage: CHIP-8 ROM-path" << std::endl;
+		return 0;
+	}
+	std::ifstream file(argv[1], std::ios::binary | std::ios::ate);
 	std::streamsize size = file.tellg();
 	file.seekg(0, std::ios::beg);
 
