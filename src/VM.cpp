@@ -330,14 +330,14 @@ void VM::run(uint16_t startAddr)
 				uint8_t pixelDestX = (m_vRegs[x] + pixelX) % 64;
 				uint8_t pixelDestY = (m_vRegs[y] + pixelY) % 32;
 
-				if(m_frameBuffer[pixelDestX + pixelDestY * 32])
+				if(m_frameBuffer[pixelDestX + pixelDestY * 64])
 				{
-					m_frameBuffer[pixelDestX + pixelDestY * 32] = 0;
+					m_frameBuffer[pixelDestX + pixelDestY * 64] = 0;
 					m_vRegs[0xF] = 1;
 				}
 				else
 				{
-					m_frameBuffer[pixelDestX + pixelDestY * 32] = 0xFF;
+					m_frameBuffer[pixelDestX + pixelDestY * 64] = 0xFF;
 				}
 			}
 			m_display.draw(m_frameBuffer);
