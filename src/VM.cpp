@@ -322,7 +322,7 @@ void VM::run(uint16_t startAddr)
 				uint8_t pixelY = pixel / 8;
 
 				// Don't do anything if pixel in sprite isn't set.
-				if(!(m_RAM[m_I + pixelY] & (0x128 >> pixelX)))
+				if(!(m_RAM[m_I + pixelY] & (0x80 >> pixelX)))
 				{
 					continue;
 				}
