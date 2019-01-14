@@ -1,5 +1,6 @@
 #include "VM.h"
 #include <cstdint>
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -18,9 +19,17 @@ int main(int argc, char* argv[])
 	std::vector<uint8_t> buffer(size);
 	if(file.read(reinterpret_cast<char*>(buffer.data()), size))
 	{
-		VM vm;
-		vm.loadProgram(buffer.data(), 0x200, size);
-		vm.run(0x200);
+		try
+		{
+			VM vm;
+			vm.loadProgram(buffer.data(), 0x200, size);
+			vm.run(0x200);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+			return -1;
+		}
 	}
 
 	return 0;
