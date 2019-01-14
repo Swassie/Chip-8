@@ -146,12 +146,7 @@ void VM::run(uint16_t startAddr)
 		instr |= m_RAM[m_PC + 1];
 
 		// Execute instruction
-		if((instr & 0xF000) == 0x0000) // SYS addr
-		{
-			// Ignore
-			m_PC += 2;
-		}
-		else if(instr == 0x00E0) // CLS
+		if(instr == 0x00E0) // CLS
 		{
 			std::memset(m_frameBuffer, 0, 64 * 32);
 			m_display.draw(m_frameBuffer);
@@ -160,6 +155,11 @@ void VM::run(uint16_t startAddr)
 		else if(instr == 0x00EE) // RET
 		{
 			m_PC = m_stack[--m_SP];
+			m_PC += 2;
+		}
+		else if((instr & 0xF000) == 0x0000) // SYS addr
+		{
+			// Ignore
 			m_PC += 2;
 		}
 		else if((instr & 0xF000) == 0x1000) // JP addr
