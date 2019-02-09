@@ -3,6 +3,8 @@ set(SOURCES
   Display.h
   InitIO.cpp
   InitIO.h
+  Keyboard.cpp
+  Keyboard.h
   main.cpp
   VM.cpp
   VM.h

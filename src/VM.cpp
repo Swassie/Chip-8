@@ -1,4 +1,5 @@
 #include "VM.h"
+#include "Keyboard.h"
 #include <chrono>
 #include <cstdlib>
 #include <cstring>
@@ -352,8 +353,7 @@ void VM::run(uint16_t startAddr)
 		{
 			uint8_t x = (instr & 0x0F00) >> 8;
 
-			// TODO: Check key
-			if(false)
+			if(Keyboard::isKeyPressed(m_vRegs[x]))
 			{
 				m_PC += 2;
 			}
@@ -363,8 +363,7 @@ void VM::run(uint16_t startAddr)
 		{
 			uint8_t x = (instr & 0x0F00) >> 8;
 
-			// TODO: Check key
-			if(false)
+			if(!Keyboard::isKeyPressed(m_vRegs[x]))
 			{
 				m_PC += 2;
 			}
@@ -379,7 +378,7 @@ void VM::run(uint16_t startAddr)
 		else if((instr & 0xF0FF) == 0xF00A) // LD Vx, key
 		{
 			uint8_t x = (instr & 0x0F00) >> 8;
-			// TODO: Wait for keypress
+			m_vRegs[x] = Keyboard::waitForKeyPress();
 			m_PC += 2;
 		}
 		else if((instr & 0xF0FF) == 0xF015) // LD DT, Vx
