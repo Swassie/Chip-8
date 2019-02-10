@@ -6,6 +6,8 @@ set(SOURCES
   Keyboard.cpp
   Keyboard.h
   main.cpp
+  Sound.cpp
+  Sound.h
   VM.cpp
   VM.h
   )

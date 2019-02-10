@@ -129,7 +129,7 @@ void VM::run(uint16_t startAddr)
 			{
 				if(--m_soundTmr == 0)
 				{
-					// TODO: Turn off sound
+					m_sound.stop();
 				}
 			}
 
@@ -394,7 +394,7 @@ void VM::run(uint16_t startAddr)
 
 			if(m_soundTmr != 0)
 			{
-				// TODO: Turn on sound
+				m_sound.play();
 			}
 			m_PC += 2;
 		}
