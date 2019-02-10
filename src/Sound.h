@@ -4,7 +4,7 @@
 class Sound
 {
 public:
-	Sound();
+	Sound(double freq);
 	~Sound();
 	void play();
 	void stop();

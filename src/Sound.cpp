@@ -2,8 +2,8 @@
 #include <cmath>
 #include <iostream>
 
-Sound::Sound()
-	: m_sineFreq(1000),
+Sound::Sound(double freq)
+	: m_sineFreq(freq),
 	  m_sampleFreq(44100),
 	  m_samplesPerSine(m_sampleFreq / m_sineFreq),
 	  m_samplePos(0)

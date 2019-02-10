@@ -38,7 +38,8 @@ VM::VM() :
 	m_PC(0),
 	m_SP(0),
 	m_initIO(),
-	m_display("CHIP-8", 640, 320)
+	m_display("CHIP-8", 640, 320),
+	m_sound(1000)
 {
 	m_vRegs[0x0] = 0;
 	m_vRegs[0x1] = 0;
