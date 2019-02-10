@@ -14,3 +14,16 @@ InitIO::~InitIO()
 {
 	SDL_Quit();
 }
+
+bool InitIO::shouldQuit()
+{
+	SDL_Event e;
+	while(SDL_PollEvent(&e))
+	{
+		if(e.type == SDL_QUIT)
+		{
+			return true;
+		}
+	}
+	return false;
+}

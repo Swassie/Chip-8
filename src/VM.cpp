@@ -98,6 +98,12 @@ void VM::run(uint16_t startAddr)
 	// Main loop
 	while(true)
 	{
+		// Check if application has received a quit event.
+		if(m_initIO.shouldQuit())
+		{
+			return;
+		}
+
 		// Control emulator speed
 		while(true)
 		{
