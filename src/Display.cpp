@@ -11,8 +11,8 @@ Display::Display(std::string title, int width, int height)
 		return;
 	}
 
+	SDL_SetWindowTitle(m_window, title.c_str());
 	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
-	//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	SDL_RenderSetLogicalSize(m_renderer, width, height);
 	SDL_RenderClear(m_renderer);
 	SDL_RenderPresent(m_renderer);
