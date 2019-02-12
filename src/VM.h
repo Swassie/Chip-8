@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <map>
 
-#define STACK_LEVELS 16
+const int STACK_LEVELS = 16;
 
 class VM
 {
