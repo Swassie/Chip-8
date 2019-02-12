@@ -1,3 +1,4 @@
+#pragma once
 #include "Display.h"
 #include "InitIO.h"
 #include "Sound.h"
