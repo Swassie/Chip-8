@@ -94,7 +94,7 @@ void VM::run(uint16_t startAddr)
 	auto timerTimestamp = std::chrono::high_resolution_clock::now();
 
 	std::srand(std::time(nullptr));
-	
+
 	// Main loop
 	while(true)
 	{
@@ -109,7 +109,7 @@ void VM::run(uint16_t startAddr)
 		{
 			auto elapsed = std::chrono::high_resolution_clock::now() - loopTimestamp;
 			size_t elapsedUS = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
-			
+
 			if(elapsedUS < EMU_SPEED_US)
 			{
 				std::this_thread::sleep_for(std::chrono::microseconds(EMU_SPEED_US - elapsedUS));
@@ -121,7 +121,7 @@ void VM::run(uint16_t startAddr)
 		}
 
 		loopTimestamp = std::chrono::high_resolution_clock::now();
-		
+
 		// Check if timers should decrement
 		auto elapsed = std::chrono::high_resolution_clock::now() - timerTimestamp;
 
@@ -142,13 +142,13 @@ void VM::run(uint16_t startAddr)
 
 			timerTimestamp = std::chrono::high_resolution_clock::now();
 		}
-		
+
 		// Fetch and decode instruction
 		if(m_PC >= RAM_SIZE - 1)
 		{
 			throw std::runtime_error("Program counter out of range: " + std::to_string(m_PC));
 		}
-		
+
 		uint16_t instr = m_RAM[m_PC];
 		instr <<= 8;
 		instr |= m_RAM[m_PC + 1];
@@ -339,7 +339,7 @@ void VM::run(uint16_t startAddr)
 				{
 					continue;
 				}
-				
+
 				uint8_t pixelDestX = (m_vRegs[x] + pixelX) % 64;
 				uint8_t pixelDestY = (m_vRegs[y] + pixelY) % 32;
 

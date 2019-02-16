@@ -117,7 +117,7 @@ uint8_t Keyboard::waitForKeyPress()
 		{
 			return 15;
 		}
-		
+
 		std::this_thread::sleep_for(std::chrono::microseconds(1000));
 	}
 }
