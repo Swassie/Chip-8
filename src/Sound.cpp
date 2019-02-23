@@ -46,7 +46,7 @@ void Sound::SDLAudioCallback(void *data, Uint8 *buffer, int length)
 
 	for(int i = 0; i < length; ++i)
 	{
-		buffer[i] = (std::sin(sound->m_samplePos / sound->m_samplesPerSine * M_PI * 2) + 1) * 127.5;
+		buffer[i] = std::sin(sound->m_samplePos / sound->m_samplesPerSine * M_PI * 2) * 10 + 127.5;
 		++sound->m_samplePos;
 	}
 }
